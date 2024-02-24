@@ -75,7 +75,7 @@ int main(){
         float combined[20];
         for(int j=0;j<2;j++) {
             print_judges_and_remove_min_max_just_once(s,scores[i][j]);
-            for(int k=0;k<c;k++) combined[k]=scores[i][k/10][k%10];
+            for(int k=0;k<c;k++) combined[k+j*s]=scores[i][j][k];
         }
         print_judges_and_remove_min_max_just_once(c,combined);
         printf("%.2f\n", average(combined));
