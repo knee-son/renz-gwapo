@@ -4,6 +4,17 @@
         "random": "c",
         "limits": "c",
         "valarray": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "array": "c",
+        "bitset": "c",
+        "string_view": "c",
+        "rope": "c",
+        "slist": "c",
+        "format": "c",
+        "initializer_list": "c",
+        "ranges": "c",
+        "span": "c",
+        "stacktrace": "c",
+        "regex": "c"
     }
 }
