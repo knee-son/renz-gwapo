@@ -1,6 +1,3 @@
-// para way error sa float scores[g][2][10]
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wvla"
 #include <stdio.h>
 
 float min(int size, float arr[]){
@@ -69,19 +66,17 @@ int main(){
             for(int k=0;k<s;k++)
                 scanf("%f",&scores[i][j][k]);
 
-
     for(int i=0;i<g;i++){
         int _min,_max;
         float combined[20];
         for(int j=0;j<2;j++) {
             print_judges_and_remove_min_max_just_once(s,scores[i][j]);
-            for(int k=0;k<c;k++) combined[k+j*s]=scores[i][j][k];
+            for(int k=0;k<s;k++) combined[k+j*s]=scores[i][j][k];
         }
         print_judges_and_remove_min_max_just_once(c,combined);
         printf("%.2f\n", average(combined));
     }
-    
+
+    // getchar(); getchar();
     return 0;
 }
-
-#pragma GCC diagnostic pop

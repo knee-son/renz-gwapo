@@ -39,46 +39,46 @@ void remove_once(int size, float arr[], float target){
     }
 }
 
-void perform_scoring(){
-    // float scores[2][10] = {{5,5,7,7,6,6,8,8,7,6},{5,5,5,5,6,5,6,6,6,7}};
-    float scores[2][10]; //[centre or remote][judges]
-    // for every gymnast's centre
-    for(int i=0; i<10; i++) scanf("%f", &scores[0][i]);
-    // for every gymnast's remote
-    for(int i=0; i<10; i++) scanf("%f", &scores[1][i]);
+int main(){
+    int g; scanf("%d", &g);
 
+    float centre[g][10]; //[gymnasts][judges]
+    float remote[g][10]; //[gymnasts][judges]
     float combined[20];
-    int size_remote = sizeof(scores[0])/sizeof(float);
-    int size_centre = sizeof(scores[1])/sizeof(float);
+    
+    int size_centre = sizeof(centre[0])/sizeof(float);
+    int size_remote = sizeof(remote[0])/sizeof(float);
     int size_combined = sizeof(combined)/sizeof(float);
 
-    float min1 = min(size_remote, scores[0]);
-    float max1 = max(size_remote, scores[0]);
-    float min2 = min(size_centre, scores[1]);
-    float max2 = max(size_centre, scores[1]);
-    print_judges(size_remote, scores[0], min1, max1);
-    print_judges(size_centre, scores[1], min2, max2);
+    for (int i=0; i<g; i++){
+        for(int j=0; j<10; j++) scanf("%f", &centre[i][j]);
+        for(int j=0; j<10; j++) scanf("%f", &remote[i][j]);
+    }
 
-    remove_once(size_remote, scores[0], min1);
-    remove_once(size_remote, scores[0], max1);
-    remove_once(size_centre, scores[1], min2);
-    remove_once(size_centre, scores[1], max2);
+    for (int i=0; i<g; i++){
+        float min1 = min(size_centre, centre[i]);
+        float max1 = max(size_centre, centre[i]);
+        float min2 = min(size_remote, remote[i]);
+        float max2 = max(size_remote, remote[i]);
+        print_judges(size_centre, centre[i], min1, max1);
+        print_judges(size_remote, remote[i], min2, max2);
 
-    for(int i=0; i<10; i++) combined[i] = scores[0][i];
-    for(int i=10; i<20; i++) combined[i] = scores[1][i%10];
-    float min_combined = min(size_combined, combined);
-    float max_combined = max(size_combined, combined);
-    print_judges(size_combined, combined, min_combined, max_combined);
+        remove_once(size_centre, centre[i], min1);
+        remove_once(size_centre, centre[i], max1);
+        remove_once(size_remote, remote[i], min2);
+        remove_once(size_remote, remote[i], max2);
 
-    remove_once(size_combined, combined, min_combined);
-    remove_once(size_combined, combined, max_combined);
-    printf("%.2f\n", average(combined));
-};
+        for(int j=0; j<10; j++) combined[j] = centre[i][j];
+        for(int j=10; j<20; j++) combined[j] = remote[i][j%10];
+        float min_combined = min(size_combined, combined);
+        float max_combined = max(size_combined, combined);
+        print_judges(size_combined, combined, min_combined, max_combined);
 
-int main(){
-    // int g=1;
-    int g; scanf("%d", &g);
-    for(int i=0; i<g; i++) perform_scoring();
+        remove_once(size_combined, combined, min_combined);
+        remove_once(size_combined, combined, max_combined);
+        printf("%.2f\n", average(combined));
+    }
 
+    // getchar(); getchar();
     return 0;
 }
