@@ -47,7 +47,7 @@ void print_judges_and_remove_min_max_just_once(int size, float arr[]){
 
 int main(){
     // int g=4;
-    // float scores[4][2][10] =
+    // float scores[g][2][10] =
     //     {{{5,5,7,7,6,6,8,8,7,6},
     //       {5,5,5,5,6,5,6,6,6,7}},
     //      {{9,9,9,9,9,10,9,10,10,9},
